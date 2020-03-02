@@ -1,8 +1,11 @@
 const redis = require("redis");
 const KEY = 'ingredients'
 class IngredientsRepository{
-    addRange(ingredient){
-        this.client.set(KEY, JSON.stringify(ingredient),function(){
+    constructor(){
+        this.client = redis.createClient();
+    }
+    addRange(ingredients){
+        this.client.set(KEY, JSON.stringify(ingredients),function(){
             console.log(arguments);
         });
     }
