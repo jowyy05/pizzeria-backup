@@ -1,5 +1,4 @@
 const multer = require('multer')
-const upload = multer()
 const csv = require('csvtojson');
 const Duplex = require('stream').Duplex;
 const IngredientsService = require('../application/IngredientsService')
@@ -32,5 +31,6 @@ class IngredientController {
   }
 }
 module.exports = function (app) {
+  const upload = multer()
   app.post('/ingredients', upload.any(),IngredientController.ingredient)
 }

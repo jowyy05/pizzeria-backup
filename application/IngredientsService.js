@@ -4,9 +4,9 @@ const IngredientsRepository = require('../infraestructure/IngredientsRepository'
 
 class IngredientsService {
     addRange(ingredients) {        
-        var ingredientsDomain = ingredients.map(i=>Ingredient.create(i));                       
+        var ingredientsDomain =  ingredients.map(i=>Ingredient.create(i));                       
         var ingredientsRepository= new IngredientsRepository();
-        ingredientsRepository.addRange(ingredients);
+      ingredientsRepository.addRange(ingredients);
     }
 }
 module.exports = IngredientsService
