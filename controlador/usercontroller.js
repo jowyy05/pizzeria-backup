@@ -9,8 +9,8 @@ class UserController {
     let response = await service.register(req.body);
     res.end(JSON.stringify(response));
   }
-  static  login(req, res) {
-    res.end('login ok');
+  static async login(req, res) {
+    await res.end('login ok');
   }
 }
 
