@@ -4,12 +4,12 @@ const UserService = require('../application/userservice');
 
 class UserController {
   
-  static register(req, res) {
+  static async register(req, res) {
     const service = new UserService();
-    let response = service.register(req.body);
+    let response = await service.register(req.body);
     res.end(JSON.stringify(response));
   }
-  static login(req, res) {
+  static  login(req, res) {
     res.end('login ok');
   }
 }

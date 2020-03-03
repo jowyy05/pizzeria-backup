@@ -1,9 +1,9 @@
 const PizzaService = require('../application/pizzaservice')
 
 class PizzaController {
-    static add( res) {
+    static async add( res) {
         var pizzaservice = new PizzaService();
-        var response =  pizzaservice.add();
+        var response =  await pizzaservice.add();
         res.end(JSON.stringify(response));
  }
 }

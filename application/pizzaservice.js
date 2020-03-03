@@ -2,10 +2,10 @@ const Pizza = require ('../domain/pizza')
 const PizzaRepository = require ('../infraestructure/pizzarepository')
 
 class PizzaService{
-    add(dto){
+    async add(dto){
         var pizza = Pizza.create(dto);
         var pizzaRepository = new PizzaRepository();
-        pizzaRepository.add(pizza)
+        await pizzaRepository.add(pizza)
         return{
             name : pizza.name
             //image

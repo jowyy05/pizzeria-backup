@@ -1,17 +1,17 @@
 const multer = require('multer')
 const csv = require('csvtojson');
 const Duplex = require('stream').Duplex;
-const IngredientsService = require('../application/IngredientsService')
+const IngredientsService = require('../application/ingredientservice')
 
 class IngredientController {
 
-  static ingredient(req, res) {
+  static async ingredient(req, res) {
 
     let stream = new Duplex();
     stream.push(req.files[0].buffer);
     stream.push(null);
 
-    var ingredientsService = new IngredientsService();
+    var ingredientsService = await new IngredientsService();
 
     var ingredients = [];
     let result = csv({
@@ -24,7 +24,7 @@ class IngredientController {
       },
       () => { },
       () => {
-        ingredientsService.addRange(ingredients);
+      ingredientsService.addRange(ingredients);
         res.end()
       }
     )

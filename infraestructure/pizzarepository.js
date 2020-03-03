@@ -7,11 +7,16 @@ class PizzaRepository {
 this.client =redis.createClient();
  }
 add(pizza){
-    this.client.set(pizza.id, JSON.stringify(pizza),function(){
-        console.log(arguments);
-    });
+    return new Promise((resolve, reject) => {
+        this.client.set(pizza.id, JSON.stringify(pizza),function() {
+            if(err) {
+                reject('image incorrect')
+            }else{
+                resolve()
+            }
+        })
+   })
 }
-
 }
 
 module.exports = PizzaRepository
