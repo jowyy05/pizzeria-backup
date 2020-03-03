@@ -3,10 +3,10 @@ const IngredientsRepository = require('../infraestructure/IngredientsRepository'
 
 
 class IngredientsService {
-  addRange(ingredients) {
+  async addRange(ingredients) {
     var ingredientsDomain = ingredients.map(i => Ingredient.create(i));
     var ingredientsRepository = new IngredientsRepository();
-    ingredientsRepository.addRange(ingredientsDomain);
+    await ingredientsRepository.addRange(ingredientsDomain);
   }
 }
 module.exports = IngredientsService
