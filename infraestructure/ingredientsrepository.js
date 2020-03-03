@@ -5,9 +5,16 @@ class IngredientsRepository{
         this.client = redis.createClient();
     }
     addRange(ingredients){
-        this.client.set(KEY, JSON.stringify(ingredients),function(){
-            console.log(arguments);
-        });
+        return new Promise((resolve,reject)=>{
+            this.client.set(KEY, JSON.stringify(ingredients),function(err){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve()
+                }
+            });
+        })
+        
     }
     
 }

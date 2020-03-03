@@ -3,11 +3,11 @@ const IngredientsRepository = require('../infraestructure/IngredientsRepository'
 
 
 class IngredientsService {
-    async addRange(ingredients) {        
-        var ingredientsDomain = ingredients.map(i=>Ingredient.create(i));                       
-        var ingredientsRepository= await new IngredientsRepository();
-     ingredientsRepository.addRange(ingredients);
-    }
+  addRange(ingredients) {
+    var ingredientsDomain = ingredients.map(i => Ingredient.create(i));
+    var ingredientsRepository = new IngredientsRepository();
+    ingredientsRepository.addRange(ingredientsDomain);
+  }
 }
 module.exports = IngredientsService
 

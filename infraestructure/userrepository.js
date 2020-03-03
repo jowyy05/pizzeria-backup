@@ -5,10 +5,15 @@ class UserRepository{
         this.client = redis.createClient();
     }
     add(user){
-       this.client.set(user.id, JSON.stringify(user),function(){
-            console.log(arguments);
-        });
-    }
-    
+        return new Promise((resolve, reject) => {
+            this.client.set(user.id, JSON.stringify(user),function(err) {
+               if (err) {
+                   reject(err)
+               } else {
+                   resolve()
+               }
+           })
+       })
+   }
 }
 module.exports = UserRepository
