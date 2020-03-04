@@ -8,7 +8,7 @@ const USERVALIDATOREQUIRE=[
 
 const USERVALIDATOLOGIN=[
     check('email').normalizeEmail().isEmail(),
-    check('password').isAlpha().isLength({ min: 5, max: 10 }),    
+    check('password').isAlphanumeric().isLength({ min: 5, max: 10 }),    
 ];
 
 module.exports={
