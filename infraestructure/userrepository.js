@@ -9,6 +9,25 @@ class UserRepository {
             .hset()*/
 
     }
+    get(email) {
+        var client = this.client;
+        return new Promise((resolve, reject) => {
+            client.HGET('idx-email', email, function (err, data) {
+                if (err) {
+                    reject(err)
+                } else {
+                    client.GET(data), function (err, data) {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            resolve(data)
+                        }
+                    }
+                }
+            })
+        });
+
+    }
     add(user) {
         var client = this.client;
         return new Promise((resolve, reject) => {
@@ -16,16 +35,9 @@ class UserRepository {
                 if (err) {
                     reject(err)
                 } else {
-                    client.HSET('idx-email', user.email, user.id, function (err) {
-                        if (err) {
-                            reject(err)
-                        } else {    
-                            client.HGET('idx-email',user.email,function(err,data){
-                                console.log(err);
-                                console.log(data);
-                            });                       
-                            resolve()
-                        }
+                    client.HSET('idx-email', user.email, user.id, function (err,data) {
+                      console.log(err);
+                      console.log(data);
                     })
 
                 }
