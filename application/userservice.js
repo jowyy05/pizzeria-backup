@@ -1,6 +1,7 @@
 ﻿const User = require('../domain/user')
 const UserRepository = require('../infraestructure/userrepository')
 let jwt = require('jsonwebtoken')
+const  config  =  require ( '../config' );
 const crypto = require('crypto');
 
 
@@ -29,7 +30,7 @@ class UserService {
             throw "Usuario o la contraseña no existe"
         }
 
-        let token = jwt.sign({ email: dto.email }, 'shhhhh',{ expiresIn: '1h' });
+        let token = jwt.sign({ email: dto.email }, config.secret,{ expiresIn: '1h' });
         return token;
 
  
